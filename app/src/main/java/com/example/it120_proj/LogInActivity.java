@@ -19,8 +19,6 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
 
         final TextView register = (TextView) findViewById(R.id.SignUp);
         register.setOnClickListener(this);
-
-        startActivity(new Intent(this, QRScanActivity.class));
     }
 
     @Override

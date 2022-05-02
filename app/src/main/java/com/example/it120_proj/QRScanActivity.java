@@ -6,21 +6,26 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class QRScanActivity extends AppCompatActivity
 {
 
     private CodeScanner codeScanner;
     private CodeScannerView codeScannerView;
-
+    private EditText editTextPayAmount;
+    private String recipientID;
+    private String amountToPay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -29,6 +34,7 @@ public class QRScanActivity extends AppCompatActivity
         setContentView(R.layout.activity_qrscanner);
         codeScannerView = findViewById(R.id.scannerView);
         codeScanner = new CodeScanner(this, codeScannerView);
+        editTextPayAmount = findViewById(R.id.edittext_amount);
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED)
         {
@@ -61,7 +67,7 @@ public class QRScanActivity extends AppCompatActivity
         {
             runOnUiThread(() ->
             {
-                //cost.setText("₱" + result);
+                recipientID = result.toString();
             });
         });
     }
@@ -76,7 +82,7 @@ public class QRScanActivity extends AppCompatActivity
         {
             runOnUiThread(() ->
             {
-                //cost.setText("₱" + result);
+                recipientID = result.toString();
             });
         });
     }
@@ -87,4 +93,39 @@ public class QRScanActivity extends AppCompatActivity
         super.onPause();
     }
 
+    //Pay button
+    public void pay(View view)
+    {
+        //Amount to pay validation
+        if (!payAmountValidationError())
+        {
+            amountToPay = editTextPayAmount.getText().toString();
+
+            Intent intent = new Intent(getBaseContext(), Receipt.class);
+            intent.putExtra("RECIPIENT_ID", recipientID);
+            intent.putExtra("AMOUNT_TO_PAY", amountToPay);
+            startActivity(intent);
+        }
+        else
+            Toast.makeText(this, "Invalid amount input!", Toast.LENGTH_SHORT);
+    }
+
+    private boolean payAmountValidationError()
+    {
+        //No input
+        if (editTextPayAmount.getText() == null)
+            return true;
+
+        //Input is non numerical
+        try
+        {
+            Integer.parseInt(editTextPayAmount.getText().toString());
+            return  false;
+        }
+        catch (NumberFormatException e)
+        {
+            return true;
+        }
+
+    }
 }

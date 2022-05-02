@@ -26,36 +26,39 @@
         app:maskColor="#77000000" />
 
     <EditText
-        android:id="@+id/textfield_amount"
+        android:id="@+id/edittext_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginBottom="15dp"
         android:ems="10"
+        android:gravity="center"
         android:inputType="textPersonName"
         android:text="Amount To Pay"
+        app:layout_constraintBottom_toTopOf="@+id/textview_current_balance"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scannerView" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button_pay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
+        android:onClick="pay"
         android:text="Pay"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textview_current_balance" />
+        app:layout_constraintTop_toBottomOf="@+id/scannerView" />
 
     <TextView
         android:id="@+id/textview_current_balance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginBottom="15dp"
         android:text="Available Balance: PHP "
+        app:layout_constraintBottom_toTopOf="@+id/button_pay"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textfield_amount" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
