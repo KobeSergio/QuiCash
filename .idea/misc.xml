@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Help/QuiCash/app/src/main/res/layout/activity_qrscanner.xml" value="0.18802083333333333" />
+        <entry key="..\:/Help/QuiCash/app/src/main/res/layout/activity_receipt.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/ADMIN/Desktop/IT120_PROJ/app/src/main/res/layout/activity_cash_in.xml" value="0.264" />
         <entry key="..\:/Users/ADMIN/Desktop/IT120_PROJ/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/ADMIN/Desktop/IT120_PROJ/app/src/main/res/layout/activity_qr.xml" value="0.25416666666666665" />
