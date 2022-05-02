@@ -26,6 +26,7 @@ import java.util.Objects;
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
 
     private FirebaseAuth mAuth;
+    private FirebaseDatabase db;
     private EditText editTextEmail, editTextUsername, editTextPassword;
     private ProgressBar progressBar;
 
@@ -34,19 +35,16 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        mAuth = FirebaseAuth.getInstance();
-
         TextView haveAccount = (TextView) findViewById(R.id.haveAccount);
         haveAccount.setOnClickListener(this);
-
         TextView registerUser = (Button) findViewById(R.id.registerUser);
         registerUser.setOnClickListener(this);
 
         editTextEmail = (EditText) findViewById(R.id.Email);
         editTextUsername = (EditText) findViewById(R.id.Username);
         editTextPassword = (EditText) findViewById(R.id.Password);
-
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
     }
 
     @Override
@@ -92,32 +90,36 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         }
 
         progressBar.setVisibility(View.VISIBLE);
+
+        db = FirebaseDatabase.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> t) {
-                        if (t.isSuccessful()) {
-                            User user = new User(username, email);
-
-                            FirebaseDatabase.getInstance().getReferenceFromUrl("https://quicash-1033b-default-rtdb.firebaseio.com/")
-                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-
-                                    if(task.isSuccessful()) {
-                                        Toast.makeText(SignUpActivity.this, "User has been registered successfully!", Toast.LENGTH_LONG).show();
-                                    } else {
-                                        Toast.makeText(SignUpActivity.this,"Failed to register try again!", Toast.LENGTH_LONG).show();
-                                    }
-                                    progressBar.setVisibility(View.GONE);
-                                }
-                            });
-                        } else {
-                            Toast.makeText(SignUpActivity.this, "Failed to register!", Toast.LENGTH_LONG).show();
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> t) {
+                if (t.isSuccessful()) {
+                    String key = db.getReference("quiz").push().getKey();
+                    User user;
+                    db.getInstance().getReferenceFromUrl("https://quicash-1033b-default-rtdb.firebaseio.com/")
+                            .child("Users").child(mAuth.getCurrentUser().getUid())
+                            .setValue(new User(mAuth.getCurrentUser().getUid(),username, email,password,0 )).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()) {
+                                Toast.makeText(SignUpActivity.this, "User has been registered successfully!", Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(getApplicationContext(),LogInActivity.class));
+                            } else {
+                                Toast.makeText(SignUpActivity.this,"Failed to register try again!", Toast.LENGTH_LONG).show();
+                            }
                             progressBar.setVisibility(View.GONE);
                         }
+                    });
+                } else {
+                    Toast.makeText(SignUpActivity.this, "Failed to register!", Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.GONE);
+                }
 
-                    }
-                });
+            }
+        });
     }
 }
