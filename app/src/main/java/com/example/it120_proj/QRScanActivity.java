@@ -2,7 +2,11 @@ package com.example.it120_proj;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -10,45 +14,71 @@ import android.widget.Toast;
 
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
-import com.budiyev.android.codescanner.DecodeCallback;
-import com.google.zxing.Result;
 
-public class QRScanActivity extends AppCompatActivity {
-    CodeScanner codeScanner;
-    CodeScannerView scanView;
-    TextView price;
+public class QRScanActivity extends AppCompatActivity
+{
+
+    private CodeScanner codeScanner;
+    private CodeScannerView codeScannerView;
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrscanner);
-        scanView = findViewById(R.id.scannerView);
-        price = findViewById(R.id.cost);
-        codeScanner = new CodeScanner(this, scanView);
+        codeScannerView = findViewById(R.id.scannerView);
+        codeScanner = new CodeScanner(this, codeScannerView);
 
-        codeScanner.setDecodeCallback(new DecodeCallback() {
-            @Override
-            public void onDecoded(@NonNull final Result result) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(QRScanActivity.this, result.getText(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-        });
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED)
+        {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 123);
+            scan();
+        }
 
-        scanView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                codeScanner.startPreview();
-            }
+        codeScannerView.setOnClickListener((View.OnClickListener) view -> scan());
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
+    {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == 123)
+        {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                scan();
+            else
+                Toast.makeText(this, "Please allow camera to be able to use this feature.", Toast.LENGTH_SHORT);
+        }
+    }
+
+    private void scan()
+    {
+        codeScanner.startPreview();
+
+        codeScanner.setDecodeCallback(result ->
+        {
+            runOnUiThread(() ->
+            {
+                //cost.setText("₱" + result);
+            });
         });
     }
+
     @Override
-    protected void onResume() {
+    protected void onResume()
+    {
         super.onResume();
         codeScanner.startPreview();
+
+        codeScanner.setDecodeCallback(result ->
+        {
+            runOnUiThread(() ->
+            {
+                //cost.setText("₱" + result);
+            });
+        });
     }
 
     @Override
@@ -56,4 +86,5 @@ public class QRScanActivity extends AppCompatActivity {
         codeScanner.releaseResources();
         super.onPause();
     }
+
 }

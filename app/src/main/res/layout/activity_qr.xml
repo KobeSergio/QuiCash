@@ -53,13 +53,13 @@
         app:layout_constraintVertical_bias="0.917" />
 
     <Button
-        android:id="@+id/CashIn"
+        android:id="@+id/GenerateQR"
         android:layout_width="120dp"
         android:layout_height="85dp"
         android:backgroundTint="#fd9f21"
         android:drawableTop="@drawable/ic_baseline_qr_code_24"
         android:drawableTint="@color/black"
-        android:text="CASH IN"
+        android:text="GENERATE QR"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

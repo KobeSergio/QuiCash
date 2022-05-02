@@ -9,8 +9,8 @@
 
     <com.budiyev.android.codescanner.CodeScannerView
         android:id="@+id/scannerView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="500dp"
         android:backgroundTint="#FFFFFF"
         android:foregroundTint="#000000"
         app:frameAspectRatioHeight="1"
@@ -20,49 +20,42 @@
         app:frameCornersSize="50dp"
         app:frameSize="0.75"
         app:frameThickness="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         app:maskColor="#77000000" />
 
-    <TextView
-        android:id="@+id/cost"
-        android:layout_width="290dp"
-        android:layout_height="44dp"
-        android:layout_marginHorizontal="100dp"
-        android:layout_marginVertical="20dp"
-        android:background="#fd9f21"
-        android:drawablePadding="10dp"
-        android:gravity="center"
-        android:padding="4dp"
-        android:text="₱0.00"
-        android:textColor="@color/black"
-        android:textSize="32dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <EditText
+        android:id="@+id/textfield_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Amount To Pay"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.935" />
+        app:layout_constraintTop_toBottomOf="@+id/scannerView" />
+
+    <Button
+        android:id="@+id/button_pay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Pay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textview_current_balance" />
 
     <TextView
-        android:id="@+id/guide"
-        android:layout_width="301dp"
-        android:layout_height="31dp"
-        android:backgroundTint="#FFFFFF"
-        android:hint="The cost of the product will appear below"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#FFEB3B"
-        android:textSize="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/textview_current_balance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Available Balance: PHP "
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.554"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.822" />
+        app:layout_constraintTop_toBottomOf="@+id/textfield_amount" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
