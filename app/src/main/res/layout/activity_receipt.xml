@@ -75,7 +75,6 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="80dp"
         android:layout_marginEnd="30dp"
-        android:text="Mark Tahimik Lang"
         android:textColor="@color/darkGray"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -83,12 +82,11 @@
         app:layout_constraintTop_toBottomOf="@+id/teaxtview_success" />
 
     <TextView
-        android:id="@+id/textview_recipent_amount"
+        android:id="@+id/textview_receipt_amount_paid"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="30dp"
-        android:text="PHP 10000.00"
         android:textColor="@color/darkGray"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -96,7 +94,7 @@
         app:layout_constraintTop_toBottomOf="@+id/payment_textview_recipent_name" />
 
     <TextView
-        android:id="@+id/textview_recipent_transactionID"
+        android:id="@+id/textview_receipt_transactionID"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -105,16 +103,18 @@
         android:textColor="@color/darkGray"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textview_recipent_amount"
-        app:layout_constraintTop_toBottomOf="@+id/textview_recipent_amount" />
+        app:layout_constraintStart_toStartOf="@+id/textview_receipt_amount_paid"
+        app:layout_constraintTop_toBottomOf="@+id/textview_receipt_amount_paid" />
 
     <Button
         android:id="@+id/payment_button_pay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
+        android:backgroundTint="@color/black"
+        android:onClick="home"
         android:text="Home"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textview_recipent_transactionID" />
+        app:layout_constraintTop_toBottomOf="@+id/textview_receipt_transactionID" />
 </androidx.constraintlayout.widget.ConstraintLayout>

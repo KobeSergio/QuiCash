@@ -10,15 +10,16 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.core.UserWriteRecord;
+
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class QRScanActivity extends AppCompatActivity
 {
@@ -26,7 +27,6 @@ public class QRScanActivity extends AppCompatActivity
     private CodeScanner codeScanner;
     private CodeScannerView codeScannerView;
     private String recipientID;
-    private FirebaseAuth firebaseAuth;
     private FirebaseDatabase firebaseDatabase;
 
     @Override
@@ -34,9 +34,15 @@ public class QRScanActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrscanner);
+
+        //Status bar color
+        Window window = getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(ContextCompat.getColor(this, R.color.black));
+
         codeScannerView = findViewById(R.id.scannerView);
         codeScanner = new CodeScanner(this, codeScannerView);
-        firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED)
@@ -97,49 +103,16 @@ public class QRScanActivity extends AppCompatActivity
 
     private void proceedToCheckOut()
     {
-//        if (recipientExist())
-//        {
-//            Intent intent = new Intent(getBaseContext(), CheckOut.class);
-//            intent.putExtra("RECIPIENT_ID", recipientID);
-//            startActivity(intent);
-//        }
+        firebaseDatabase.getReference().child("Users").child(recipientID).get().addOnCompleteListener(task ->
+        {
+            if (task.getResult().child("username").getValue() == null)
+                Toast.makeText(this, "An error has occurred.", Toast.LENGTH_SHORT).show();
+            else
+            {
+                Intent intent = new Intent(getBaseContext(), CheckOut.class);
+                intent.putExtra("RECIPIENT_ID", recipientID);
+                startActivity(intent);
+            }
+        });
     }
-
-//    private boolean recipientExist()
-//    {
-//
-//    }
-
-    //Pay button
-    public void pay(View view)
-    {
-        //Amount to pay validation
-//        if (!payAmountValidationError())
-//        {
-//            Intent intent = new Intent(getBaseContext(), CheckOut.class);
-//            intent.putExtra("RECIPIENT_ID", recipientID);
-//            startActivity(intent);
-//        }
-//        else
-//            Toast.makeText(this, "Invalid amount input!", Toast.LENGTH_SHORT).show();
-    }
-
-//    private boolean payAmountValidationError()
-//    {
-//        //No input
-//        if (editTextPayAmount.getText() == null)
-//            return true;
-//
-//        //Input is non numerical
-//        try
-//        {
-//            Integer.parseInt(editTextPayAmount.getText().toString());
-//            return  false;
-//        }
-//        catch (NumberFormatException e)
-//        {
-//            return true;
-//        }
-//
-//    }
 }
