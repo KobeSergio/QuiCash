@@ -10,7 +10,7 @@
     <com.budiyev.android.codescanner.CodeScannerView
         android:id="@+id/scannerView"
         android:layout_width="0dp"
-        android:layout_height="odp"
+        android:layout_height="0dp"
         android:backgroundTint="#FFFFFF"
         android:foregroundTint="#000000"
         app:frameAspectRatioHeight="1"

@@ -97,18 +97,18 @@ public class QRScanActivity extends AppCompatActivity
 
     private void proceedToCheckOut()
     {
-        if (recipientExist())
-        {
-            Intent intent = new Intent(getBaseContext(), CheckOut.class);
-            intent.putExtra("RECIPIENT_ID", recipientID);
-            startActivity(intent);
-        }
+//        if (recipientExist())
+//        {
+//            Intent intent = new Intent(getBaseContext(), CheckOut.class);
+//            intent.putExtra("RECIPIENT_ID", recipientID);
+//            startActivity(intent);
+//        }
     }
 
-    private boolean recipientExist()
-    {
-
-    }
+//    private boolean recipientExist()
+//    {
+//
+//    }
 
     //Pay button
     public void pay(View view)
