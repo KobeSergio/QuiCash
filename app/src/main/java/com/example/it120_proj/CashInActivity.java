@@ -55,7 +55,7 @@ public class CashInActivity extends AppCompatActivity {
                 }else {
                     balance = toAdd + Double.parseDouble(cashInAmount.getText().toString());
                     ref.child("balance").setValue(balance);
-                    writeLog(user.getUid(),balance);
+                    writeLog(user.getUid(),Double.parseDouble(cashInAmount.getText().toString()));
                     startActivity(new Intent(getApplicationContext(),MainActivity.class));
                 }
             }
