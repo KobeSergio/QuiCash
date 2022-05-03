@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IT143_PROJ">
         <activity
+            android:name=".CheckOut"
+            android:exported="false" />
+        <activity
             android:name=".Receipt"
             android:exported="false" />
         <activity
