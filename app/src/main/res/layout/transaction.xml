@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardElevation="8dp"
     app:cardCornerRadius="8dp"
-    app:contentPadding="10dp"
+    app:contentPadding="5dp"
     android:layout_margin="16dp">
 
     <LinearLayout
@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:text="Date :"
                 android:textColor="@color/black"
-                android:textSize="26sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -35,7 +35,7 @@
                 android:layout_marginLeft="8dp"
                 android:text="Now"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
         </LinearLayout>
 
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:text="Action :"
                 android:textColor="@color/black"
-                android:textSize="26sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -60,7 +60,7 @@
                 android:layout_marginLeft="8dp"
                 android:text="Cash In"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
         </LinearLayout>
 
@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:text="Description :"
                 android:textColor="@color/black"
-                android:textSize="26sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -85,7 +85,7 @@
                 android:layout_marginLeft="8dp"
                 android:text="Cashed in 1k"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
         </LinearLayout>
     </LinearLayout>

@@ -8,13 +8,16 @@
 
     <Button
         android:id="@+id/cashInBtn"
-        android:layout_width="200dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="@color/black"
         android:text="Cash in"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cashInAmount" />
+        app:layout_constraintTop_toBottomOf="@+id/cashInAmount"
+        app:layout_constraintVertical_bias="0.07999998" />
 
     <EditText
         android:id="@+id/cashInAmount"
@@ -24,9 +27,10 @@
         android:gravity="left"
         android:inputType="textPersonName"
         android:text="0.00"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.73"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,12 +40,14 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="82dp"
         android:text="Enter amount"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/cashInAmount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:textSize="20sp"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
@@ -51,8 +57,21 @@
         android:layout_marginTop="9dp"
         android:layout_marginBottom="9dp"
         android:text="Php. "
-        android:textSize="20sp"
+        android:textColor="#000000"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="@+id/cashInAmount"
         app:layout_constraintEnd_toStartOf="@+id/cashInAmount"
         app:layout_constraintTop_toTopOf="@+id/cashInAmount" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/icon_payment" />
 </androidx.constraintlayout.widget.ConstraintLayout>

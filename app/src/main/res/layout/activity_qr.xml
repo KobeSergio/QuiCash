@@ -4,9 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2dc3f7"
+    android:background="#FFFFFF"
     android:exported="false"
     tools:context=".LogInActivity">
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="wrap_content"
+        android:layout_height="190dp"
+        android:background="#222222"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btnLogout"
@@ -15,7 +26,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:backgroundTint="#FD3321"
-        android:drawableLeft="@drawable/ic_baseline_history_24"
+        android:drawableLeft="@drawable/ic_baseline_login_24"
         android:drawableTint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -41,10 +52,10 @@
         android:id="@+id/BalanceText"
         android:layout_width="157dp"
         android:layout_height="38dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center"
         android:text="BALANCE"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="16dp"
         app:layout_constraintBottom_toTopOf="@+id/balance"
         app:layout_constraintEnd_toEndOf="@+id/balance"
@@ -56,12 +67,12 @@
         android:layout_width="51dp"
         android:layout_height="51dp"
         android:layout_marginStart="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="#fd9f21"
         android:drawableLeft="@drawable/ic_baseline_history_24"
         android:drawableTint="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/CashIn"
@@ -86,12 +97,11 @@
         android:layout_height="wrap_content"
         android:text="QuiCash"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.075"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/BalanceText"
+        app:layout_constraintEnd_toStartOf="@+id/btnLogout"
+        app:layout_constraintStart_toEndOf="@+id/THButton"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/qrImage"
@@ -103,7 +113,7 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/balance"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.22000003" />
 
     <TextView
         android:id="@+id/balance"
@@ -116,7 +126,7 @@
         android:gravity="center"
         android:padding="4dp"
         android:text="₱0.00"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
