@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IT143_PROJ">
         <activity
+            android:name=".TransactionHistory"
+            android:exported="false" />
+        <activity
             android:name=".Receipt"
             android:exported="false" />
         <activity
@@ -30,6 +33,7 @@
         <activity android:name=".SignUpActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".QRScanActivity" />
+        <activity android:name=".CashInActivity" />
     </application>
 
 </manifest>

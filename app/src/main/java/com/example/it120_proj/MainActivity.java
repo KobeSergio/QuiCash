@@ -8,7 +8,6 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,12 +23,12 @@ import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
 
 public class MainActivity extends AppCompatActivity {
-    EditText qrVal;
-    Button GenerateBTN, ScanBTN, THistory, cashIn;
-    ImageView qrImg;
-    TextView balance;
+    Button btnScan, btnHistory, btnCashIn;
+    ImageView ivQRImg;
+    TextView tvBalance;
     private FirebaseAuth mAuth;
     private FirebaseDatabase db;
+    private DatabaseReference dr;
     
 
     @Override
@@ -37,44 +36,51 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qr);
 
-        qrVal = findViewById(R.id.qrValue);
-        cashIn = findViewById(R.id.CashIn);
-        ScanBTN = findViewById(R.id.ScanQR);
-        qrImg = findViewById(R.id.qrImage);
-        balance = findViewById(R.id.balance);
+        btnCashIn = findViewById(R.id.CashIn);
+        btnScan = findViewById(R.id.ScanQR);
+        ivQRImg = findViewById(R.id.qrImage);
+        tvBalance = findViewById(R.id.balance);
 
 
-        // Get a reference to our posts
+        // Get a reference to user
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
-        String userID = user.getUid();
+        dr = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid());
 
-//        reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                User user = snapshot.getValue(User.class);
-//
-//                if(user != null){
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
+        //Set values here
+        dr.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String userBalance = snapshot.child("balance").getValue().toString();
+                tvBalance.setText("Php. " + userBalance);
+            }
 
-        QRGEncoder qrgEncoder = new QRGEncoder(userID, null, QRGContents.Type.TEXT, 500);
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        //QR code automatically generated
+        QRGEncoder qrgEncoder = new QRGEncoder(user.getUid(), null, QRGContents.Type.TEXT, 500);
         Bitmap qrBits = qrgEncoder.getBitmap();
-        qrImg.setImageBitmap(qrBits);
+        ivQRImg.setImageBitmap(qrBits);
 
-
-        ScanBTN.setOnClickListener(new View.OnClickListener() {
+        btnScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, QRScanActivity.class));
             }
         });
+        btnCashIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, CashInActivity.class));
+            }
+        });
+//        btnHistory.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(MainActivity.this, TransactionHistory.class));
+//            }
+//        });
     }
 }
