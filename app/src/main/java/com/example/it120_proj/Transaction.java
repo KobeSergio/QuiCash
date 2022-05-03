@@ -8,9 +8,6 @@ public class Transaction {
     public String date;
     public String description;
 
-    public Transaction(){
-
-    }
     public Transaction(String transactionID, String userID, String action, String date, String description) {
         this.transactionID = transactionID;
         this.userID = userID;

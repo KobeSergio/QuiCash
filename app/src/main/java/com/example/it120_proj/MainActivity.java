@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qr);
 
+        btnHistory = findViewById(R.id.THButton);
         btnCashIn = findViewById(R.id.CashIn);
         btnScan = findViewById(R.id.ScanQR);
         ivQRImg = findViewById(R.id.qrImage);
@@ -76,11 +77,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, CashInActivity.class));
             }
         });
-//        btnHistory.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(MainActivity.this, TransactionHistory.class));
-//            }
-//        });
+        btnHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, TransactionHistory.class));
+            }
+        });
     }
 }
