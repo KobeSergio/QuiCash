@@ -23,7 +23,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     EditText editTextUsername,editTextPassword;
     MaterialButton login;
     ProgressBar progressBar;
-    FirebaseAuth fAuth= FirebaseAuth.getInstance();;
+    FirebaseAuth fAuth= FirebaseAuth.getInstance();
 
 
     @Override

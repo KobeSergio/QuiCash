@@ -19,6 +19,9 @@
             android:name=".TransactionHistory"
             android:exported="false" />
         <activity
+            android:name=".CheckOut"
+            android:exported="false" />
+        <activity
             android:name=".Receipt"
             android:exported="false" />
         <activity

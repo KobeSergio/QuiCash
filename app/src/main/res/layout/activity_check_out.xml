@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Receipt">
+    tools:context=".CheckOut">
 
     <ImageView
         android:id="@+id/imageView2"
@@ -14,14 +14,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icon_success" />
+        app:srcCompat="@drawable/icon_payment" />
 
     <TextView
         android:id="@+id/teaxtview_success"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="TRANSACTION COMPLETE!"
+        android:text="PAYMENT INFO"
         android:textColor="@color/semiBlack"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -48,25 +48,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
-        android:text="Amount Paid:"
+        android:text="Amount To Pay:"
         android:textColor="@color/semiBlack"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/payment_textview_recipent_name_label" />
-
-    <TextView
-        android:id="@+id/textview_recipent_name_label4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
-        android:text="Transaction ID:"
-        android:textColor="@color/semiBlack"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textview_recipent_name_label3" />
 
     <TextView
         android:id="@+id/payment_textview_recipent_name"
@@ -82,39 +69,39 @@
         app:layout_constraintStart_toEndOf="@+id/payment_textview_recipent_name_label"
         app:layout_constraintTop_toBottomOf="@+id/teaxtview_success" />
 
-    <TextView
-        android:id="@+id/textview_recipent_amount"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="30dp"
-        android:text="PHP 10000.00"
-        android:textColor="@color/darkGray"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/payment_textview_recipent_name"
-        app:layout_constraintTop_toBottomOf="@+id/payment_textview_recipent_name" />
-
-    <TextView
-        android:id="@+id/textview_recipent_transactionID"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="30dp"
-        android:text="qwertyuiopasdfghjklzxcvbnmqwertyui"
-        android:textColor="@color/darkGray"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textview_recipent_amount"
-        app:layout_constraintTop_toBottomOf="@+id/textview_recipent_amount" />
-
     <Button
         android:id="@+id/payment_button_pay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="Home"
+        android:layout_marginTop="40dp"
+        android:text="PAY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textview_recipent_transactionID" />
+        app:layout_constraintTop_toBottomOf="@+id/payment_vailable_balance" />
+
+    <EditText
+        android:id="@+id/payment_edittext"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="30dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textview_recipent_name_label3" />
+
+    <TextView
+        android:id="@+id/payment_vailable_balance"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="30dp"
+        android:text="Available Balance: PHP 2000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/payment_edittext" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
